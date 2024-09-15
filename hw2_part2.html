@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="CNIT 133 Homework 2 - Part 2 - Basic Mathematical Operations">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNIT 133 Homework 2 - Part 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function processNumbers() {
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            const num3 = parseInt(document.getElementById('num3').value);
+            const resultArea = document.getElementById('results');
+
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                resultArea.innerHTML = 'Please enter valid numbers.';
+                return;
+            }
+
+            const sum = num1 + num2 + num3;
+            const avg = sum / 3;
+            const product = num1 * num2 * num3;
+            const smallest = Math.min(num1, num2, num3);
+            const largest = Math.max(num1, num2, num3);
+
+            resultArea.innerHTML = `
+                Sum: ${sum}<br>
+                Average: ${avg.toFixed(2)}<br>
+                Product: ${product}<br>
+                Smallest: ${smallest}<br>
+                Largest: ${largest}
+            `;
+        }
+
+        function clearForm() {
+            document.getElementById('numForm').reset();
+            document.getElementById('results').innerHTML = '';
+        }
+
+        $(document).ready(function () {
+            $('#fadeButton').click(function () {
+                $('#results').fadeOut();
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>CNIT 133 Homework 2 - Part 2</h1>
+    </header>
+    
+    <main>
+        <form id="numForm">
+            <label for="num1">Enter first integer:</label>
+            <input type="text" id="num1"><br><br>
+            <label for="num2">Enter second integer:</label>
+            <input type="text" id="num2"><br><br>
+            <label for="num3">Enter third integer:</label>
+            <input type="text" id="num3"><br><br>
+            <button type="button" onclick="processNumbers()">Process</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+            <button type="button" id="fadeButton">Fade Results</button>
+        </form>
+
+        <div id="results" style="margin-top: 20px;"></div>
+
+        <br><br>
+        <a href="hw2.html" class="button-link">Back to Homework 2 Main Page</a>
+    </main>
+</body>
+</html>
