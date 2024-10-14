@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit</title>
+    
+    <style>
+        .green-button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block; 
+            margin-top: 20px; 
+            margin-left: 10px;
+        }
+        .green-button:hover {
+            background-color: darkgreen;
+        }
+        .content-wrapper {
+            padding-left: 50px; 
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+            margin: 20px;
+            margin-left: 40px; 
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplication Game</h1>
+    <div id="question"></div>
+    <input type="number" id="answer">
+    <button class="green-button" onclick="checkAnswer()">Submit</button>
+    <button class="green-button" onclick="clearForm()">Clear</button> 
+    <div id="result"></div>
+    <div id="errorMessage" style="color: red;"></div>
+    <button id="playAgain" class="green-button" onclick="newQuestion()" style="display: none;">Play Again</button>
+    <div id="finalMessage"></div>
+    <a href="hw3.html" class="green-button">Previous Page</a>
+    <a href="index.html" class="green-button">Home Page</a>
+    <script>
+        let x, y;
+
+        function newQuestion() {
+            x = Math.floor(Math.random() * 10); 
+            y = Math.floor(Math.random() * 10); 
+            document.getElementById('question').textContent = `How much is ${x} times ${y}?`;
+            document.getElementById('answer').value = ''; 
+            document.getElementById('result').textContent = ''; 
+            document.getElementById('errorMessage').textContent = ''; 
+            document.getElementById('playAgain').style.display = 'none'; 
+        }
+
+        function checkAnswer() {
+            const answer = parseInt(document.getElementById('answer').value);
+
+            if (answer === x * y) {
+                document.getElementById('result').textContent = "Very good!";
+                document.getElementById('errorMessage').textContent = ""; 
+                document.getElementById('playAgain').style.display = 'block'; 
+            } else {
+                document.getElementById('errorMessage').textContent = "No. Please try again.";
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('answer').value = '';
+            document.getElementById('result').textContent = '';
+            document.getElementById('errorMessage').textContent = '';
+        }
+
+        function endGame() {
+            document.getElementById('finalMessage').textContent = "Thanks for playing, see you next time!";
+            document.getElementById('playAgain').style.display = 'none'; // Hide play again option
+            document.getElementById('question').textContent = ''; // Clear the question
+            document.getElementById('answer').style.display = 'none'; // Hide answer input
+            document.querySelector('button[onclick="checkAnswer()"]').style.display = 'none'; // Hide submit button
+        }
+
+        newQuestion();
+    </script>
+</body>
+</html>

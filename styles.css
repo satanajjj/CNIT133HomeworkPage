@@ -1,14 +1,22 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, monospace;
     background-color: #f0f0f0;
     color: #333;
     text-align: center;
+    margin: 20px;
+    padding-left: 40px; /* Add padding on the left */
 }
 
 header {
     background-color: #4CAF50;
     padding: 20px;
     color: white;
+}
+
+main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 ul {
@@ -33,3 +41,5 @@ a.button-link {
 a.button-link:hover {
     background-color: #45a049;
 }
+
+
