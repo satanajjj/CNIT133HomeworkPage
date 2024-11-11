@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculation and Draggable Element</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .draggable-box {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+            border: 2px solid blue;
+            text-align: center;
+            line-height: 150px;
+            font-weight: bold;
+        }
+        body {
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+       
+    </style>
+</head>
+<body>
+
+<!-- Navigation link to go back to the main page -->
+
+<h2>Calculations with Loops</h2>
+<div id="results"></div>
+
+<div class="draggable-box" id="draggable">
+    Drag Me!
+</div>
+
+<ul>
+    <a href="hw4.html" class="button-link">Previous Page</a>
+    <a href="index.html" class="button-link">Back to Main Page</a>
+</ul>
+
+<script>
+    // For loop: calculating product and sum of every fourth integer from 5 to 25
+    let product1 = 1;
+    let sum1 = 0;
+    for (let i = 5; i <= 25; i += 4) {
+        product1 *= i;
+        sum1 += i;
+    }
+
+    // Display results for the first loop
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML += `<p>The result of 5 * 9 * 13 * 17 * 21 * 25 is ${product1.toLocaleString()}.</p>`;
+    resultsDiv.innerHTML += `<p>The result of 5 + 9 + 13 + 17 + 21 + 25 is ${sum1.toLocaleString()}.</p>`;
+
+    // While loop: calculating product and sum of every third integer from 3 to 18
+    let product2 = 1;
+    let sum2 = 0;
+    let j = 3;
+    while (j <= 18) {
+        product2 *= j;
+        sum2 += j;
+        j += 3;
+    }
+
+    // Display results for the second loop
+    resultsDiv.innerHTML += `<p>The result of 3 * 6 * 9 * 12 * 15 * 18 is ${product2.toLocaleString()}.</p>`;
+    resultsDiv.innerHTML += `<p>The result of 3 + 6 + 9 + 12 + 15 + 18 is ${sum2.toLocaleString()}.</p>`;
+
+    // Make the element draggable using jQuery UI
+    $(function() {
+        $("#draggable").draggable();
+    });
+</script>
+
+</body>
+</html>
