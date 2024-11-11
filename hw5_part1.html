@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form - Homework 5 - Part 1</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #e2e2e2;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .error {
+            color: red;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .green-button {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .green-button:hover {
+            background-color: #45a049;
+        }
+        
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>User Information Form</h1>
+</header>
+
+<!-- Form for user input -->
+<div class="form-container">
+    <form id="userForm">
+        <!-- Full Name -->
+        <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName">
+        </div>
+
+        <!-- Age Group -->
+        <div class="form-group">
+            <label>Age Group:</label>
+            <label><input type="radio" name="ageGroup" id="age1" value="under21"> Less than 21</label>
+            <label><input type="radio" name="ageGroup" id="age2" value="21to50"> Between 21 and 50</label>
+            <label><input type="radio" name="ageGroup" id="age3" value="over50"> Older than 50</label>
+        </div>
+
+        <!-- Browsers Used -->
+        <div class="form-group">
+            <label>Browsers Used:</label>
+            <label><input type="checkbox" name="browser" id="firefox" value="Firefox"> Firefox</label>
+            <label><input type="checkbox" name="browser" id="edge" value="Edge"> Edge</label>
+            <label><input type="checkbox" name="browser" id="chrome" value="Chrome"> Chrome</label>
+            <label><input type="checkbox" name="browser" id="safari" value="Safari"> Safari</label>
+        </div>
+
+        <!-- Movie Preference -->
+        <div class="form-group">
+            <label for="movieType">Preferred Movie Type:</label>
+            <select id="movieType" name="movieType">
+                <option value="">Select...</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Science Fiction">Science Fiction</option>
+            </select>
+        </div>
+
+        <!-- Form Buttons -->
+        <button type="button" onclick="submitForm()">Submit</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+</div>
+
+<!-- Output area for messages -->
+<div id="output" class="output"></div>
+
+<!-- Navigation Buttons Below the Output -->
+<div class="button-container">
+    <a href="hw5.html" class="green-button">Previous Page</a>  
+    <a href="index.html" class="green-button">Home Page</a>
+</div>
+
+<script>
+    // Function to submit the form
+    function submitForm() {
+        const fullName = document.getElementById('fullName').value.trim();
+        const ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+        const browsers = document.querySelectorAll('input[name="browser"]:checked');
+        const movieType = document.getElementById('movieType').value;
+        const output = document.getElementById('output');
+
+        // Clear any previous output
+        output.classList.remove('error');
+        output.textContent = '';
+
+        // Validate each field
+        let errorMessage = '';
+        if (!fullName) {
+            errorMessage += 'Please enter your full name.\n';
+        }
+        if (!ageGroup) {
+            errorMessage += 'Please select your age group.\n';
+        }
+        if (browsers.length === 0) {
+            errorMessage += 'Please select at least one browser.\n';
+        }
+        if (movieType === '') {
+            errorMessage += 'Please select a preferred movie type.\n';
+        }
+
+        // Display error messages or success message
+        if (errorMessage) {
+            output.classList.add('error');
+            output.textContent = errorMessage.trim().replace(/\n/g, '\n');
+        } else {
+            output.classList.remove('error');
+            output.textContent = 'Thanks, your data was submitted!';
+        }
+    }
+
+    // Function to clear the form
+    function clearForm() {
+        document.getElementById('userForm').reset();
+        document.getElementById('output').textContent = '';
+    }
+</script>
+
+</body>
+</html>

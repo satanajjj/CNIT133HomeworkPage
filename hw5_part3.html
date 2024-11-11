@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 5 - Part 3: State Information Lookup">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Information Lookup</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            width: 300px;
+            text-align: left;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .green-button {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .green-button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>State Information Lookup</h1>
+</header>
+
+<main>
+    
+    <div class="container">
+        <form id="stateForm">
+            <!-- State Input -->
+            <div class="form-group">
+                <label for="stateInput">Enter State Full Name or Abbreviation:</label>
+                <input type="text" id="stateInput" name="stateInput" placeholder="e.g., California or CA">
+            </div>
+
+            <!-- Form Buttons -->
+            <button type="button" onclick="getStateInfo()">Get State Info</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </form>
+
+        <!-- Output Area for Messages -->
+        <div id="output" class="output"></div>
+    </div>
+</main>
+
+<!-- Navigation Buttons Below -->
+<div class="button-container">
+    <a href="hw5.html" class="green-button">Previous Page</a>  
+    <a href="index.html" class="green-button">Home Page</a>
+</div>
+
+<script>
+    // State Data Array
+    const statesData = [
+        {abbr: "AL", name: "Alabama", capital: "Montgomery", population: "4,903,185"},
+        {abbr: "AK", name: "Alaska", capital: "Juneau", population: "731,545"},
+        {abbr: "AZ", name: "Arizona", capital: "Phoenix", population: "7,278,717"},
+        {abbr: "AR", name: "Arkansas", capital: "Little Rock", population: "3,017,825"},
+        {abbr: "CA", name: "California", capital: "Sacramento", population: "39,512,223"},
+        {abbr: "CO", name: "Colorado", capital: "Denver", population: "5,758,736"},
+    ];
+
+    // Function to get state info
+    function getStateInfo() {
+        const input = document.getElementById('stateInput').value.trim().toLowerCase();
+        const outputDiv = document.getElementById('output');
+        outputDiv.classList.remove('error');
+        outputDiv.textContent = '';
+
+        if (!input) {
+            outputDiv.classList.add('error');
+            outputDiv.textContent = "Please enter a valid state name or abbreviation.";
+            return;
+        }
+
+        // Search for the state in the data array
+        const stateInfo = statesData.find(state =>
+            state.abbr.toLowerCase() === input || state.name.toLowerCase() === input
+        );
+
+        if (stateInfo) {
+            outputDiv.innerHTML = `
+                <p>Thanks for your inquiry, here is the information you requested:</p>
+                <p><strong>State Abbr:</strong> ${stateInfo.abbr}</p>
+                <p><strong>State Name:</strong> ${stateInfo.name}</p>
+                <p><strong>Capital:</strong> ${stateInfo.capital}</p>
+                <p><strong>Population:</strong> ${stateInfo.population}</p>
+            `;
+        } else {
+            outputDiv.classList.add('error');
+            outputDiv.textContent = "Sorry, we do not have information about this state! We only have information about Alabama, Alaska, Arizona, Arkansas, California, and Colorado.";
+        }
+    }
+
+    // Function to clear the form
+    function clearForm() {
+        document.getElementById('stateForm').reset();
+        document.getElementById('output').textContent = '';
+        document.getElementById('output').classList.remove('error');
+    }
+</script>
+
+</body>
+</html>

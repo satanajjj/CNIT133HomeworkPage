@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 5 for JavaScript, jQuery, AJAX course">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Homework 5 Part 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+           
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #e6e6e6;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .green-button {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .green-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>URL Navigation</h1>
+</header>
+
+<main>
+    <div class="container">
+        <!-- First Pulldown Menu with onchange event -->
+        <div class="form-group">
+            <label for="menu1">Select a website to visit (opens automatically):</label>
+            <select id="menu1" onchange="openInNewTab(this.value)">
+                <option value="">Choose a site...</option>
+                <option value="https://www.example.com">Example</option>
+                <option value="https://www.wikipedia.org">Wikipedia</option>
+                <option value="https://www.openai.com">OpenAI</option>
+            </select>
+        </div>
+
+        <!-- Second Pulldown Menu with onclick event -->
+        <div class="form-group">
+            <label for="menu2">Select a website to visit (click button to go):</label>
+            <select id="menu2">
+                <option value="">Choose a site...</option>
+                <option value="https://www.github.com">GitHub</option>
+                <option value="https://www.stackoverflow.com">Stack Overflow</option>
+                <option value="https://www.mozilla.org">Mozilla</option>
+            </select>
+            <button onclick="navigateSelectedSite()" class="green-button">Go</button>
+        </div>
+    </div>
+</main>
+
+<!-- Navigation Buttons Below -->
+<div class="button-container">
+    <a href="hw5.html" class="green-button">Previous Page</a>  
+    <a href="index.html" class="green-button">Home Page</a>
+</div>
+
+<script>
+    // Function to open the selected URL in a new tab/window for the first pulldown menu
+    function openInNewTab(url) {
+        if (url) {
+            window.open(url, '_blank');
+        }
+    }
+
+    // Function to handle the button click event for the second pulldown menu
+    function navigateSelectedSite() {
+        const menu2 = document.getElementById('menu2');
+        const url = menu2.value;
+        if (url) {
+            window.open(url, '_blank');
+        } else {
+            alert('Please select a website to visit.');
+        }
+    }
+</script>
+
+</body>
+</html>
