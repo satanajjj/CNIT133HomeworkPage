@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter - Homework 6 - Part 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #28a745; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        main {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        textarea {
+            width: calc(100% - 20px);
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745; /* Green button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const content = document.getElementById("content").value.trim();
+            const searchChar = document.getElementById("searchChar").value.trim();
+            const outputArea = document.getElementById("output");
+
+            // Clear previous output
+            outputArea.textContent = "";
+
+            if (searchChar.length !== 1) {
+                outputArea.textContent = "Please enter a single character to search.";
+                return;
+            }
+
+            // Count occurrences (case-insensitive)
+            const regex = new RegExp(searchChar, "gi");
+            const matches = content.match(regex);
+
+            if (matches) {
+                outputArea.textContent = `The character '${searchChar}' appears ${matches.length} times in the content.`;
+            } else {
+                // Open new window if no match
+                const newWindow = window.open("", "_blank", "width=300,height=100,left=200,top=200");
+                newWindow.document.write(
+                    `<p style='font-family: Arial; font-size: 16px;'>Search character '${searchChar}' not found in the content you typed.</p>` +
+                    `<button onclick='window.close()' style='font-family: Arial; font-size: 16px; padding: 5px 10px;'>Close</button>`
+                );
+
+                // Clear the output area
+                document.getElementById("output").textContent = "";
+            }
+        }
+
+        function handleClear() {
+            document.getElementById("content").value = "";
+            document.getElementById("searchChar").value = "";
+            document.getElementById("output").textContent = "";
+        }
+    </script>
+</head>
+<body>
+    <header>Character Counter</header>
+
+    <main>
+        <form id="characterForm" onsubmit="handleSubmit(event)">
+            <label for="content">Enter your long content:</label>
+            <textarea id="content" name="content" required></textarea>
+
+            <label for="searchChar">Enter a single character to search:</label>
+            <input type="text" id="searchChar" name="searchChar" maxlength="1" required>
+
+            <button type="submit">Submit</button>
+            <button type="button" onclick="handleClear()">Clear</button>
+        </form>
+
+        <div id="output"></div>
+
+        <a href="hw6.html">Back to Homework 6</a>
+    </main>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Parser -  Homework 6 - Part 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #28a745; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        main {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[readonly] {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: #28a745; /* Green button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #error {
+            margin-top: 20px;
+            font-size: 16px;
+            color: red;
+            text-align: left;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function parsePhoneNumber(event) {
+            event.preventDefault();
+
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+            const areaCodeOutput = document.getElementById("areaCode");
+            const firstThreeOutput = document.getElementById("firstThree");
+            const lastFourOutput = document.getElementById("lastFour");
+            const errorDiv = document.getElementById("error");
+
+            // Clear previous outputs
+            areaCodeOutput.value = "";
+            firstThreeOutput.value = "";
+            lastFourOutput.value = "";
+            errorDiv.textContent = "";
+
+            // Validate phone number format
+            const regex = /^\((\d{3})\) (\d{3})-(\d{4})$/;
+            const match = phoneNumber.match(regex);
+
+            if (match) {
+                const [, areaCode, firstThree, lastFour] = match;
+                areaCodeOutput.value = areaCode;
+                firstThreeOutput.value = firstThree;
+                lastFourOutput.value = lastFour;
+            } else {
+                errorDiv.textContent = "Please enter the phone number in the format (999) 999-9999.";
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("phoneNumber").value = "";
+            document.getElementById("areaCode").value = "";
+            document.getElementById("firstThree").value = "";
+            document.getElementById("lastFour").value = "";
+            document.getElementById("error").textContent = "";
+        }
+    </script>
+</head>
+<body>
+    <header>Phone Number Parser</header>
+
+    <main>
+        <form id="phoneForm" onsubmit="parsePhoneNumber(event)">
+            <label for="phoneNumber">Enter your phone number (format: (999) 999-9999):</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="areaCode">Area Code:</label>
+            <input type="text" id="areaCode" name="areaCode" readonly>
+
+            <label for="firstThree">First 3 Digits:</label>
+            <input type="text" id="firstThree" name="firstThree" readonly>
+
+            <label for="lastFour">Last 4 Digits:</label>
+            <input type="text" id="lastFour" name="lastFour" readonly>
+
+            <button type="submit">Parse</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </form>
+
+        <div id="error"></div>
+
+        <a href="hw6.html">Back to Homework 6</a>
+    </main>
+</body>
+</html>
