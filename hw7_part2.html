@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation with Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #28a745; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #28a745;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline-flex;
+        }
+
+        nav li {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #218838;
+            border-radius: 4px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown a {
+            color: black;
+            padding: 10px;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown a:hover {
+            background-color: #f0f0f0;
+        }
+
+        nav li:hover .dropdown {
+            display: block;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>Homework Navigation</header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="#">Homework 2</a>
+                <div class="dropdown">
+                    <a href="hw2_part1.html">Part 1</a>
+                    <a href="hw2_part2.html">Part 2</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">Homework 3</a>
+                <div class="dropdown">
+                    <a href="hw3_part1.html">Part 1</a>
+                    <a href="hw3_part2.html">Part 2</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">Homework 4</a>
+                <div class="dropdown">
+                    <a href="hw4_part1.html">Part 1</a>
+                    <a href="hw4_part2.html">Part 2</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <a href="hw7.html">Back to Homework 7</a>
+    </main>
+</body>
+</html>

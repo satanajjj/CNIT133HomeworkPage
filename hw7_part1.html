@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Customizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #28a745; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        main {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        input[type="radio"], input[type="checkbox"], select {
+            margin: 5px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function applyStyles() {
+            const contentArea = document.querySelector(".content");
+
+            // Get background color
+            const bgColor = document.querySelector("input[name='bgColor']:checked");
+            if (bgColor) {
+                contentArea.style.backgroundColor = bgColor.value;
+            }
+
+            // Get font styles
+            const isBold = document.getElementById("bold").checked;
+            const isItalic = document.getElementById("italic").checked;
+            const isUnderline = document.getElementById("underline").checked;
+
+            contentArea.style.fontWeight = isBold ? "bold" : "normal";
+            contentArea.style.fontStyle = isItalic ? "italic" : "normal";
+            contentArea.style.textDecoration = isUnderline ? "underline" : "none";
+
+            // Get font size
+            const fontSize = document.getElementById("fontSize").value;
+            contentArea.style.fontSize = fontSize;
+        }
+    </script>
+</head>
+<body>
+    <header>Style Customizer</header>
+
+    <main>
+        <div class="content">
+            <p>This is the first paragraph. Feel free to style me!</p>
+            <p>This is the second paragraph. Style me too!</p>
+            <p>This is the third paragraph. Let's get styled together!</p>
+        </div>
+
+        <form id="styleForm">
+            <fieldset>
+                <legend>Choose Background Color:</legend>
+                <label><input type="radio" name="bgColor" value="lightblue" onchange="applyStyles()"> Light Blue</label>
+                <label><input type="radio" name="bgColor" value="lightgreen" onchange="applyStyles()"> Light Green</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Font Style:</legend>
+                <label><input type="checkbox" id="bold" onchange="applyStyles()"> Bold</label>
+                <label><input type="checkbox" id="italic" onchange="applyStyles()"> Italic</label>
+                <label><input type="checkbox" id="underline" onchange="applyStyles()"> Underline</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Font Size:</legend>
+                <select id="fontSize" onchange="applyStyles()">
+                    <option value="1em">Default</option>
+                    <option value="1.2em">Medium</option>
+                    <option value="1.5em">Large</option>
+                </select>
+            </fieldset>
+        </form>
+
+        <a href="hw7.html">Back to Homework 7</a>
+    </main>
+</body>
+</html>
